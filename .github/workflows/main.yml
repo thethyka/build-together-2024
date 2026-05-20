@@ -13,9 +13,14 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Validate Mapbox token
+        run: test -n "$VITE_MAPBOX_TOKEN"
+        env:
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       - run: npm run build
         env:
           VITE_BLAND_AI_KEY: ${{ secrets.VITE_BLAND_AI_KEY }}
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

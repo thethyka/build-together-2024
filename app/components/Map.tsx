@@ -134,7 +134,11 @@ const animateRoute = (map, name, route, totalDuration) => {
 }
 
 const Map = ({ renderAmbulance }) => {
-	mapboxgl.accessToken = "pk.eyJ1IjoibW5lZmZmIiwiYSI6ImNseDVrY25pYTFjdjgyanF1eWN3ODk1dnYifQ.C3FcclLbADYg41XId7M5AA";
+	mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
+	if (!mapboxgl.accessToken) {
+		throw new Error('Missing Mapbox token. Set VITE_MAPBOX_TOKEN in GitHub Actions secrets.');
+	}
 
 	const mapContainer = useRef(null);
 	const [lng, setLng] = useState(115.82244);
