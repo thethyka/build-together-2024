@@ -8,7 +8,7 @@ with open ('number.txt') as f:
 number = lines[0:-1]
 webhook =  "https://webhook.site/220d9b48-f807-4cd6-9421-52146bebce0e"
 
-apiKey = 'sk-ov6c6hpxhx45p0wqretdf5e8g2mm6lirh0uiaku52zuksa452oeokla03gy2m0nu69'
+apiKey = os.environ.get('BLAND_AI_KEY', '')
 model_level = ['base', 'enhanced','turbo']
 
 voice = "maya"
